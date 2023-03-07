@@ -15,7 +15,7 @@ const taglineComputedStyles = computed(() => {
   const { mdUp } = useBreakpoint()
   return {
     width: mdUp ? '40%' : '100%',
-    top: mdUp ? '15%' : '35%',
+    top: mdUp ? '15%' : '25%',
     fontSize: mdUp ? '5rem' : '4rem',
   }
 })
