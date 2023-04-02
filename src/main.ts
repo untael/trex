@@ -1,16 +1,29 @@
 import { createApp } from 'vue'
+import { createI18n } from 'vue-i18n'
 import App from './App.vue'
 import { createVuestic } from 'vuestic-ui'
 import 'vuestic-ui/css'
 import router from './router'
 import './main.scss'
-createApp(App)
+import { messages } from './i18n/translations'
+
+const app = createApp(App)
+const i18n = createI18n({
+  legacy: false,
+  locale: 'en',
+  fallbackLocale: 'en',
+  messages: {
+    ...messages
+  }
+})
+app
   .use(router)
+  .use(i18n)
   .use(createVuestic({
     config: {
       colors: {
-        currentPresetName: 'dark'
-      }
-    }
+        currentPresetName: 'dark',
+      },
+    },
   }))
   .mount('#app')

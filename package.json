@@ -8,8 +8,10 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "flag-icons": "^6.6.6",
     "swiper": "^9.1.0",
     "vue": "^3.2.45",
+    "vue-i18n": "9",
     "vue-router": "4",
     "vuestic-ui": "^1.5.0"
   },

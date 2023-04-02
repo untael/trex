@@ -13,5 +13,6 @@ import TMain from './components/TMain.vue'
 <style lang="scss">
 .t-app {
   scroll-snap-type: y mandatory;
+  scroll-behavior: smooth;
 }
 </style>
