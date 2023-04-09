@@ -1,81 +1,49 @@
 <template>
   <TSection class="t-preview">
     <div class="container">
-      <!--      <transition-group tag="div">-->
-      <!--        <template v-for="(phrase,ind) in phrases" :key="ind">-->
-      <!--          <div :style="{ visibility: phrase.show }" :class="phrase.gridClass">{{ phrase.text }}</div>-->
-      <!--        </template>-->
-      <!--      </transition-group>-->
-      <div class="t-preview__about" v-for="(phrase,ind) in phrases" :key="ind">
-        <div class="t-preview__about--text" :class="phrase.gridClass">{{ phrase.text }}</div>
-      </div>
+      <template v-for="(phrase, index) in phrases" :key="index">
+        <div class="t-preview__about" :class="phrase.gridClass">
+          <div class="t-preview__about--text">{{ $t(phrase.text) }}</div>
+        </div>
+      </template>
     </div>
   </TSection>
 </template>
 
 <script setup lang="ts">
 import TSection from './TSection.vue'
-import { computed, ref, watch } from 'vue'
-import { useBreakpoint } from 'vuestic-ui'
-import { useI18n } from "vue-i18n";
+import {computed, ref, watch} from 'vue'
+import {useBreakpoint} from 'vuestic-ui'
 
-const { t, locale, messages } = useI18n();
 const phrases = ref([
   {
-    text: t(`about.text_1`),
+    text: `about.text_1`,
     gridClass: 'title',
   },
   {
-    text: t(`about.text_2`),
+    text: `about.text_2`,
     gridClass: 'description_1',
 
   },
   {
-    text: t(`about.text_3`),
+    text: `about.text_3`,
     gridClass: 'description_2',
 
   },
   {
-    text: t(`about.text_4`),
+    text: `about.text_4`,
     gridClass: 'description_3',
   },
 ])
 
-watch(() => locale.value, () => {
-  console.log('locale.value', locale.value)
-  console.log('t(`about.text_3`)', t(`about.text_3`))
-})
-const phrases2 = computed(() => {
-  return [
-    {
-      text: t(`about.text_1`),
-      gridClass: 'title',
-    },
-    {
-      text: t(`about.text_2`),
-      gridClass: 'description_1',
-
-    },
-    {
-      text: t(`about.text_3`),
-      gridClass: 'description_2',
-
-    },
-    {
-      text: t(`about.text_4`),
-      gridClass: 'description_3',
-    },
-  ]
-})
-
 for (let i = 1; i <= phrases.value.length; i++) {
   setTimeout(() => {
-    phrases.value[i - 1].gridClass += ' appearing-test'
+    phrases.value[i - 1].gridClass += ' appearing-animation'
   }, i * 500)
 }
 
 const taglineComputedStyles = computed(() => {
-  const { mdUp } = useBreakpoint()
+  const {mdUp} = useBreakpoint()
   return {
     width: mdUp ? '45%' : '100%',
     top: mdUp ? '15%' : '25%',
@@ -85,10 +53,6 @@ const taglineComputedStyles = computed(() => {
 </script>
 
 <style lang="scss">
-:root {
-  --animation-enter: translateY(50px);
-}
-
 .container {
   display: grid;
   grid-template-rows: repeat(4, fit-content(100%));
@@ -106,17 +70,17 @@ const taglineComputedStyles = computed(() => {
   align-items: center;
 
   &__about {
+    opacity: 0;
     display: flex;
     justify-content: center;
 
     &--text {
-      opacity: 0;
       width: 80%;
     }
   }
 
 
-  .appearing-test {
+  .appearing-animation {
     animation: appearing 1s;
     animation-fill-mode: forwards;
   }
@@ -134,16 +98,44 @@ const taglineComputedStyles = computed(() => {
   }
 }
 
+@media screen and (min-width: 769px) {
+  .container {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 2fr 1fr;
+    grid-template-areas:
+          'title title'
+          'description_1 description_2'
+          'description_3 description_3';
+    column-gap: 2rem;
+    margin: 0 5%;
+  }
 
-.v-enter-active,
-.v-leave-active {
-  transition: all 2s ease;
-}
+  .t-preview {
+    &__about {
+      display: block;
+      &--text {
+        width: 100%;
+        max-width: 30vw;
+      }
+    }
+  }
+  .title {
+    grid-area: title;
+    font-weight: bold;
+    font-size: 2rem;
+  }
 
-.v-enter-from,
-.v-leave-to {
-  opacity: 0;
-  transform: translateY(50px);
+  .description_1 {
+    grid-area: description_1;
+  }
+
+  .description_2 {
+    grid-area: description_2;
+  }
+
+  .description_3 {
+    grid-area: description_3;
+  }
 }
 
 //@media screen and (min-width: 769px) {
@@ -187,9 +179,7 @@ const taglineComputedStyles = computed(() => {
 //    grid-area: description_1;
 //    font-size: 1rem;
 //    min-height: 160px;
-//
 //    //border: 1px solid green;
-//
 //  }
 //
 //  .description_2 {
@@ -199,9 +189,7 @@ const taglineComputedStyles = computed(() => {
 //    grid-area: description_2;
 //    font-size: 1rem;
 //    min-height: 160px;
-//
 //    //border: 1px solid blue;
-//
 //  }
 //
 //  .description_3 {
@@ -211,9 +199,7 @@ const taglineComputedStyles = computed(() => {
 //    font-weight: bold;
 //    font-size: 1.5rem;
 //    min-height: 90px;
-//
 //    //border: 1px solid blue;
-//
 //  }
 //
 //  .container {
