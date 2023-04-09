@@ -1,6 +1,6 @@
 <template>
   <TSection class="t-preview">
-    <div class="container">
+    <div class="t-preview__container">
       <template v-for="(phrase, index) in phrases" :key="index">
         <div class="t-preview__about" :class="phrase.gridClass">
           <div class="t-preview__about--text">{{ $t(phrase.text) }}</div>
@@ -12,7 +12,7 @@
 
 <script setup lang="ts">
 import TSection from './TSection.vue'
-import {computed, ref, watch} from 'vue'
+import {computed, ref } from 'vue'
 import {useBreakpoint} from 'vuestic-ui'
 
 const phrases = ref([
@@ -53,13 +53,6 @@ const taglineComputedStyles = computed(() => {
 </script>
 
 <style lang="scss">
-.container {
-  display: grid;
-  grid-template-rows: repeat(4, fit-content(100%));
-  row-gap: 3rem;
-  position: relative;
-}
-
 .t-preview {
   position: relative;
   font-size: 1rem;
@@ -69,6 +62,13 @@ const taglineComputedStyles = computed(() => {
   display: flex;
   align-items: center;
 
+  &__container {
+    display: grid;
+    grid-template-rows: repeat(4, fit-content(100%));
+    row-gap: 1.75rem;
+    position: relative;
+    margin-top: 2rem;
+  }
   &__about {
     opacity: 0;
     display: flex;
@@ -83,6 +83,16 @@ const taglineComputedStyles = computed(() => {
   .appearing-animation {
     animation: appearing 1s;
     animation-fill-mode: forwards;
+  }
+
+  .title {
+    font-weight: bold;
+    font-size: 1.75rem;
+  }
+
+  .description_3 {
+    font-weight: bold;
+    font-size: 1.25rem;
   }
 
   @keyframes appearing {
@@ -111,6 +121,17 @@ const taglineComputedStyles = computed(() => {
   }
 
   .t-preview {
+    &__container {
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 1fr 2fr 1fr;
+      grid-template-areas:
+          'title title'
+          'description_1 description_2'
+          'description_3 description_3';
+      column-gap: 2rem;
+      margin: 0 5%;
+    }
+    
     &__about {
       display: block;
       &--text {
@@ -138,76 +159,4 @@ const taglineComputedStyles = computed(() => {
   }
 }
 
-//@media screen and (min-width: 769px) {
-//  :root {
-//    --animation-enter: translateX(50px);
-//  }
-//  .t-preview {
-//    font-size: 1.25rem;
-//  }
-//  .container {
-//    width: 80vw;
-//    height: 30vh;
-//    //border: 1px solid yellow;
-//    display: grid;
-//    grid-template-columns: 1fr 1fr;
-//    grid-template-rows: 1fr 2fr 1fr;
-//    grid-template-areas:
-//      'title title'
-//      'description_1 description_2'
-//      'description_3 description_3';
-//    column-gap: 5%;
-//    row-gap: 15%;
-//  }
-//
-//  .title {
-//    display: flex;
-//    justify-content: flex-start;
-//    align-items: flex-start;
-//    grid-area: title;
-//    font-weight: bold;
-//    font-size: 2rem;
-//    min-height: 90px;
-//    //border: 1px solid red;
-//
-//  }
-//
-//  .description_1 {
-//    display: flex;
-//    justify-content: center;
-//    align-items: flex-start;
-//    grid-area: description_1;
-//    font-size: 1rem;
-//    min-height: 160px;
-//    //border: 1px solid green;
-//  }
-//
-//  .description_2 {
-//    display: flex;
-//    justify-content: center;
-//    align-items: flex-start;
-//    grid-area: description_2;
-//    font-size: 1rem;
-//    min-height: 160px;
-//    //border: 1px solid blue;
-//  }
-//
-//  .description_3 {
-//    display: flex;
-//    align-items: flex-start;
-//    grid-area: description_3;
-//    font-weight: bold;
-//    font-size: 1.5rem;
-//    min-height: 90px;
-//    //border: 1px solid blue;
-//  }
-//
-//  .container {
-//    margin: 0;
-//    position: absolute;
-//    top: 50%;
-//    left: 50%;
-//    transform: translate(-50%, -50%);
-//  }
-//}
 </style>

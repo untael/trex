@@ -7,7 +7,7 @@
         :space-between="50"
         navigation
     >
-      <swiper-slide v-for="(item, index) in packages" :key="item.name + index">
+      <swiper-slide v-for="(item, index) in plans" :key="item.name + index">
         <va-card class="t-prices__card" squared outlined stripe :stripe-color="item.stripeColor">
           <va-card-title>{{ $t(item.name) }}</va-card-title>
           <va-card-content>
@@ -15,12 +15,11 @@
               {{ $t(item.description) }}
             </div>
             <va-list>
-              <va-list-label>Features</va-list-label>
               <va-list-item v-for="(feature, featIndex) in item.features" :key="feature + featIndex">
                 <va-list-item-section icon>
                   <va-icon
                       name="check"
-                      color="success"
+                      :color="item.stripeColor"
                   />
                 </va-list-item-section>
                 <va-list-item-section>
@@ -30,7 +29,7 @@
                 </va-list-item-section>
               </va-list-item>
             </va-list>
-            <va-button color="success">Order now for {{ item.price }}</va-button>
+            <va-button :color="item.stripeColor" @click="orderPackage(item)">{{ $t('packages.orderNow') }} {{ item.price }}</va-button>
           </va-card-content>
         </va-card>
       </swiper-slide>
@@ -39,19 +38,19 @@
 </template>
 
 <script setup lang="ts">
-import {computed, ref} from 'vue'
+import { computed, ref } from 'vue'
 import TSection from './TSection.vue'
-import {Swiper, SwiperSlide} from 'swiper/vue'
-import {Navigation} from 'swiper'
+import { Swiper, SwiperSlide } from 'swiper/vue'
+import { Navigation } from 'swiper'
 import 'swiper/css'
 import 'swiper/css/navigation'
-import {useBreakpoint, VaListItemSection} from 'vuestic-ui'
+import { useBreakpoint, VaListItemSection } from 'vuestic-ui'
 
-const packages = ref([
+const plans = ref([
   {
     name: 'packages.start.name',
     description: 'packages.start.description',
-    stripeColor: 'secondary',
+    stripeColor: 'info',
     features: [
       'packages.start.features[0]',
       'packages.start.features[1]',
@@ -59,24 +58,24 @@ const packages = ref([
     price: '800 zł',
   },
   {
-    name: 'Classic',
-    description: 'The Classic Gym Package is ideal for those who are looking for a more comprehensive gym experience. It usually includes access to a wider range of equipment, such as free weights, resistance bands, and functional training equipment. The Classic package is perfect for those who are looking to take their fitness to the next level.',
+    name: 'packages.classic.name',
+    description: 'packages.classic.description',
     stripeColor: 'success',
     features: [
-      '12 training sessions',
-      '1 session as a gift',
-      'Diet planning',
+      'packages.classic.features[0]',
+      'packages.classic.features[1]',
+      'packages.classic.features[2]',
     ],
     price: '1200 zł',
   },
   {
-    name: 'Pro',
-    description: 'The Pro Gym Package is designed for serious athletes or fitness enthusiasts who want access to top-of-the-line equipment and amenities. The Pro package is ideal for those who are looking to achieve peak performance and make fitness a central part of their lifestyle.',
+    name: 'packages.pro.name',
+    description: 'packages.pro.description',
     stripeColor: 'danger',
     features: [
-      '16 training sessions',
-      '1 session as a gift',
-      'Diet planning',
+      'packages.pro.features[0]',
+      'packages.pro.features[1]',
+      'packages.pro.features[2]',
     ],
     price: '1500 zł',
   },
@@ -84,7 +83,7 @@ const packages = ref([
 
 const modules = [Navigation]
 const slidesPerView = computed(() => {
-  const {mdUp, lgUp} = useBreakpoint()
+  const { mdUp, lgUp } = useBreakpoint()
   if (lgUp) {
     return 3
   }
@@ -94,6 +93,13 @@ const slidesPerView = computed(() => {
   return 1
 })
 
+const emit = defineEmits(['order'])
+
+const orderPackage = (plan: any) => {
+  const contactForm = document.getElementById('contacts')
+  contactForm?.scrollIntoView({ behavior: 'smooth' })
+  emit('order', plan)
+}
 const swiperOption = {
   slidesPerView: 4,
   spaceBetween: 30,
@@ -123,6 +129,7 @@ const swiperOption = {
 
   &__card {
     height: 70vh;
+    line-height: 1.2;
   }
 
   .va-card {

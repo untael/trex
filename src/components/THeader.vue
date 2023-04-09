@@ -2,7 +2,9 @@
   <va-navbar class="t-header" color="backgroundPrimary">
     <template #left>
       <va-navbar-item class="logo">
-        TREX
+        <va-button preset="plain" text-color="#ffffff" @click="handleClick({id: 'preview', name: 'preview'})">
+          TREX
+        </va-button>
       </va-navbar-item>
     </template>
     <template #right>
@@ -10,7 +12,7 @@
         <template #anchor>
           <va-navbar-item class="locale-dropdown">
             <va-button preset="plain">
-              Language
+              {{$t('language')}}
             </va-button>
           </va-navbar-item>
         </template>
@@ -26,7 +28,7 @@
       </va-dropdown>
       <va-navbar-item v-for="(item, index) in navbarItems" :key="index">
         <va-button preset="plain" @click="handleClick(item)">
-          {{ item.name }}
+          {{ $t(item.name) }}
         </va-button>
       </va-navbar-item>
     </template>
@@ -43,12 +45,12 @@ import { useRouter } from 'vue-router'
 const { locale } = useI18n();
 const navbarItems = ref([
   {
-    name: 'Prices',
+    name: 'prices',
     id: 'prices',
   },
   {
-    name: 'Contact',
-    id: 'contact',
+    name: 'contacts',
+    id: 'contacts',
   },
 ])
 
@@ -84,6 +86,7 @@ const handleClick = (item: any) => {
     inline: 'center',
   })
 }
+
 </script>
 
 <style lang="scss">
@@ -97,7 +100,17 @@ const handleClick = (item: any) => {
   }
 
   &__flag-name {
-    margin-left: 4px;
+    margin-left: 1rem;
+  }
+
+  .va-navbar__item.logo {
+    padding: 0 0 1rem 0;
+  }
+
+  @media screen and (min-width: 769px) {
+    .va-navbar__item.logo {
+      padding: 0;
+    }
   }
 }
 </style>
