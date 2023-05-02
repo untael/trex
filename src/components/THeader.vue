@@ -3,7 +3,7 @@
     <template #left>
       <va-navbar-item class="logo">
         <va-button preset="plain" text-color="#ffffff" @click="handleClick({id: 'preview', name: 'preview'})">
-          TREX
+          <img height="20" src="/logo.svg" alt="Mirek Trainer"/>
         </va-button>
       </va-navbar-item>
     </template>
