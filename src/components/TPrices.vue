@@ -11,10 +11,10 @@
         <va-card class="t-prices__card" squared outlined stripe :stripe-color="item.stripeColor">
           <va-card-title>{{ $t(item.name) }}</va-card-title>
           <va-card-content>
-            <div>
+            <div class="t-prices__card__content">
               {{ $t(item.description) }}
             </div>
-            <va-list>
+            <va-list class="t-prices__card__features">
               <va-list-item v-for="(feature, featIndex) in item.features" :key="feature + featIndex">
                 <va-list-item-section icon>
                   <va-icon
@@ -128,12 +128,20 @@ const swiperOption = {
   align-items: center;
 
   &__card {
-    height: 70vh;
+    height: auto;
     line-height: 1.2;
+    &__content {
+      font-size: 14px;
+    }
+    &__features {
+      font-size: 14px;
+      padding: 0.5rem 0;
+    }
   }
 
   .va-card {
     display: flex;
+    height: 100%;
     flex-direction: column;
 
     &__content {
@@ -145,7 +153,7 @@ const swiperOption = {
 
     .va-card-title {
       justify-content: center;
-      font-size: 3rem;
+      font-size: 2rem;
     }
 
     .va-list-label {
@@ -153,8 +161,51 @@ const swiperOption = {
     }
   }
 
+  .swiper-wrapper {
+    align-items: stretch;
+  }
   .swiper-slide {
+    height: auto;
     padding: 0 calc(var(--swiper-navigation-size) / 44 * 27 + 10px);
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .t-prices {
+    .swiper-button-prev {
+      top: 28%;
+    }
+    .swiper-button-next {
+      top: 28%;
+    }
+    .swiper {
+      height: 100%;
+    }
+    .swiper-wrapper {
+      align-items: flex-end;
+    }
+    .swiper-slide {
+      height: 80%;
+      padding: 0 5px;
+    }
+  }
+}
+
+@media screen and (min-width: 1080px) {
+  .t-prices {
+    &__card {
+      .va-card-title {
+        font-size: 3rem;
+      }
+
+      &__content {
+        font-size: 1.5rem;
+      }
+      &__features {
+        padding: 2rem 0;
+        font-size: 1.5rem;
+      }
+    }
   }
 }
 </style>

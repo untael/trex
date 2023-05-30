@@ -61,8 +61,8 @@ export const messages = {
     requiredField: 'Pole obowiązkowe',
     about: {
       text_1: 'O MNIE:',
-      text_2: 'Swoją przygodę ze sportem rozpocząłem w dzieciństwie. ZACZYNAłem OD KARATE, Jazdy gokartami. Uprawianałem również kajakarstwo. W  2014 ROKU poznałem siłownię, która do dnia dzisiejszego pochłonęła mnie  całkowicie.',
-      text_3: 'TERAZ JESTEM TRENEREM PERSONALNYM. Bezustannie POszerzam WIEDZę z BIOMECHemiki ORAZ ANATOMII człowieka.Pomaga mi to w codziennej pracy z moimi podopiecznymi,ale nie tylko. Wiedza, którą zdobywam rozbudziła moją nową pasję. Projektowanie  oraz tworzenie własnych MASZYNY NA SIŁOWNIĘ CZERPIĘ RADOŚĆ NIE TYLKO z  TEGO,  ALE TAKŻE ZE WSPÓŁPRACY Z moimi PODOPIECZNYMI.',
+      text_2: 'Swoją przygodę ze sportem rozpocząłem w dzieciństwie. Zaczyńałem od karate, jazdy gokartami. Uprawianałem również kajakarstwo. W 2014 roku poznałem siłownię, która do dnia dzisiejszego pochłonęła mnie całkowicie.',
+      text_3: 'Teraz jestem trenerem personalnym. Bezustannie poszerzam wiedzę z biomechemii oraz anatomii człowieka. Pomaga mi to w codziennej pracy z moimi podopiecznymi, ale nie tylko. Wiedza, którą zdobywam rozbudziła moją nową pasję. Projektowanie oraz tworzenie własnych maszyn na siłownię czerpię radość nie tylko z tego, ale także ze współpracy z moimi podopiecznymi.',
       text_4: 'Moje motto: pomagać, nie szkodzić.',
     },
     packages: {

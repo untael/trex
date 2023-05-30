@@ -53,7 +53,7 @@ const additionalInformation = ref(props.note)
 const name = ref('')
 
 watch(() => props.plan, (value) => {
-  additionalInformation.value = `${t('contactForm.notePlaceholder', { name: name.value })} ${t(value?.name)}`
+  additionalInformation.value = `${t('contactForm.notePlaceholder', { name: name.value })} ${t(value?.name)} (${t(value?.price)})`
 })
 watch(name, (value) => {
   additionalInformation.value = `${t('contactForm.notePlaceholder', { name: value })} ${t(props.plan?.name)}`
@@ -62,7 +62,7 @@ watch(name, (value) => {
 const sendEmail = () => {
   const formIsValid = form.value.validate()
   if (formIsValid) {
-    window.location.href = `mailto:mirekbmx111@gmail.com?subject=${t('contactForm.mailSubject')}&body=${additionalInformation.value}`
+    window.location.href = `mailto:m.trainer.pl@gmail.com?subject=${t('contactForm.mailSubject')}&body=${additionalInformation.value}`
   }
 }
 const rules = [(value: string) => (value && value.length > 0) || t('requiredField')]

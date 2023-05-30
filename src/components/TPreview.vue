@@ -108,6 +108,12 @@ const taglineComputedStyles = computed(() => {
   }
 }
 
+@media screen and (max-width: 320px) {
+  .t-preview {
+    font-size: 0.875rem;
+  }
+}
+
 @media screen and (min-width: 769px) {
   .container {
     grid-template-columns: 1fr 1fr;
@@ -131,7 +137,7 @@ const taglineComputedStyles = computed(() => {
       column-gap: 2rem;
       margin: 0 5%;
     }
-    
+
     &__about {
       display: block;
       &--text {
@@ -156,6 +162,17 @@ const taglineComputedStyles = computed(() => {
 
   .description_3 {
     grid-area: description_3;
+  }
+}
+
+@media screen and (min-width: 1080px) {
+  .t-preview {
+    font-size: 1.75rem;
+
+    .description_3 {
+      font-weight: bold;
+      font-size: 2rem;
+    }
   }
 }
 

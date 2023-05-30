@@ -56,14 +56,14 @@ const navbarItems = ref([
 
 const locales = ref([
   {
-    name: 'English',
-    flag: 'gb',
-    locale: 'en',
-  },
-  {
     name: 'Polski',
     flag: 'pl',
     locale: 'pl',
+  },
+  {
+    name: 'English',
+    flag: 'gb',
+    locale: 'en',
   },
   {
     name: 'Русский',

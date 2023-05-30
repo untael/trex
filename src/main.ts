@@ -10,8 +10,8 @@ import { messages } from './i18n/translations'
 const app = createApp(App)
 const i18n = createI18n({
   legacy: false,
-  locale: 'en',
-  fallbackLocale: 'en',
+  locale: 'pl',
+  fallbackLocale: 'pl',
   messages: {
     ...messages
   }
